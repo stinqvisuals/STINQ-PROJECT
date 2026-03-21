@@ -42,11 +42,19 @@ const CartPage = () => {
                                     {/* Gambar Produk */}
                                     <div className="relative h-32 w-32 md:h-44 md:w-44 bg-[#f6f6f6] rounded-sm overflow-hidden flex-shrink-0">
                                         <Image
-                                            // Handle jika image_url string atau array
-                                            src={Array.isArray(item.image_url)
-                                                ? (item.image_url[0].startsWith('http') ? item.image_url[0] : `/${item.image_url[0]}`)
-                                                : (item.image_url.startsWith('http') ? item.image_url : `/${item.image_url}`)
-                                            }
+                                            src={(() => {
+                                                // 1. Ambil path gambar (handle jika array atau string)
+                                                let rawPath = Array.isArray(item.image_url) ? item.image_url[0] : item.image_url;
+
+                                                // 2. Jika rawPath kosong/undefined, beri gambar placeholder atau string kosong
+                                                if (!rawPath) return '/placeholder.png';
+
+                                                // 3. Pastikan format URL benar (tambahkan '/' jika diperlukan)
+                                                if (rawPath.startsWith('http') || rawPath.startsWith('/')) {
+                                                    return rawPath;
+                                                }
+                                                return `/${rawPath}`;
+                                            })()}
                                             alt={item.name}
                                             fill
                                             className="object-cover"

@@ -27,7 +27,6 @@ export default function ContactPage() {
 
             if (response.ok) {
                 toast.success("Message sent! We'll be in touch.", {
-                    position: "bottom-center"
                 });
                 // Reset form setelah berhasil
                 setFormData({ name: '', email: '', message: '' });
@@ -43,8 +42,6 @@ export default function ContactPage() {
 
     return (
         <main className="min-h-screen bg-white text-black">
-            <Toaster />
-
             <div className="max-w-[1000px] mx-auto px-6 pt-40 pb-20 grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
                     <h1 className="text-5xl font-black tracking-tighter mb-6">Contact Us</h1>

@@ -11,8 +11,6 @@ export default function Home() {
         <Hero />
         <ProductGrid />
       </div>
-
-      {/* Footer sederhana */}
       <Footer />
     </main>
   );

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { useWishlist } from '@/lib/wish-list-store';
+import Footer from '@/components/Footer';
 
 interface Product {
     id: number;
@@ -119,9 +120,7 @@ const CategoryPage = () => {
                     </div>
                 )}
             </div>
-            <footer className="py-20 text-center border-t border-gray-100 text-gray-400 text-sm">
-                © 2026 STINQ - All Rights Reserved
-            </footer>
+            <Footer />
         </main>
     );
 };

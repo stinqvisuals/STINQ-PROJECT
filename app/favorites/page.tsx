@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import Footer from '@/components/Footer';
+import toast, { Toaster } from 'react-hot-toast';
 
 const FavoritesPage = () => {
     const { favorites, toggleFavorite } = useWishlist();

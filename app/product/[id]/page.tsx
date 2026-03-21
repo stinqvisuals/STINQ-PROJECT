@@ -91,7 +91,6 @@ const ProductDetail = () => {
 
     return (
         <main className="min-h-screen bg-white text-black">
-            <Toaster />
             <div className="max-w-[1300px] mx-auto px-4 md:px-12 pb-40 pt-32">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
