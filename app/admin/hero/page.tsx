@@ -47,7 +47,7 @@ export default function ManageHero() {
     return (
         <div className="pb-60">
             <Toaster />
-            <h1 className="text-2xl font-bold mb-6 text-black">Manage Hero</h1>
+            <h1 className="text-2xl font-black mb-6 text-black">Manage Hero</h1>
 
             <form onSubmit={handleAddHero} className="bg-white p-6 rounded-xl border border-gray-200 space-y-4 mb-10 text-black">
                 <input placeholder="Main Title (Example: STINQ WORLD)" className="w-full border p-2 rounded" onChange={e => setForm({ ...form, title: e.target.value })} required />

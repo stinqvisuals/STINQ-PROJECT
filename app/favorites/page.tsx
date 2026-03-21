@@ -4,6 +4,7 @@ import { useWishlist } from '@/lib/wish-list-store';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 const FavoritesPage = () => {
     const { favorites, toggleFavorite } = useWishlist();
@@ -20,7 +21,7 @@ const FavoritesPage = () => {
                 </h1>
 
                 {favorites.length === 0 ? (
-                    <div className="py-20 text-center border-t">
+                    <div className="py-20 text-center border-t border-gray-100">
                         <p className="text-gray-500 mb-6">Items added to your Favorites will be saved here.</p>
                         <Link href="/" className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase hover:opacity-75 transition text-sm">
                             Find Something to Love
@@ -58,9 +59,7 @@ const FavoritesPage = () => {
                     </div>
                 )}
             </div>
-            <footer className="py-20 text-center border-t border-gray-100 text-gray-400 text-sm">
-                © 2026 STINQ - All Rights Reserved
-            </footer>
+            <Footer />
         </main>
     );
 };

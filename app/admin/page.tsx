@@ -7,7 +7,8 @@ export default function AdminDashboard() {
     const [stats, setStats] = useState({
         totalOrders: 0,
         totalRevenue: 0,
-        totalProducts: 0
+        totalProducts: 0,
+        totalMembers: 0
     });
 
     useEffect(() => {
@@ -16,13 +17,15 @@ export default function AdminDashboard() {
             const { data: orders } = await supabase.from('orders').select('total_amount');
             // Ambil jumlah produk
             const { count: productCount } = await supabase.from('products').select('*', { count: 'exact', head: true });
+            const { count: memberCount } = await supabase.from('members').select('*', { count: 'exact', head: true });
 
             if (orders) {
                 const revenue = orders.reduce((acc, curr) => acc + curr.total_amount, 0);
                 setStats({
                     totalOrders: orders.length,
                     totalRevenue: revenue,
-                    totalProducts: productCount || 0
+                    totalProducts: productCount || 0,
+                    totalMembers: memberCount || 0
                 });
             }
         };
@@ -65,6 +68,15 @@ export default function AdminDashboard() {
                     <div>
                         <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Products</p>
                         <p className="text-2xl font-black">{stats.totalProducts}</p>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                    <div className="p-4 bg-orange-50 text-orange-600 rounded-xl">
+                        <Users size={24} />
+                    </div>
+                    <div>
+                        <p className="text-sm text-gray-500 font-bold uppercase tracking-wider">Total Members</p>
+                        <p className="text-2xl font-black">{stats.totalMembers}</p>
                     </div>
                 </div>
             </div>

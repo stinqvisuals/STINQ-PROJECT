@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import ProductGrid from "@/components/ProductCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,9 +13,7 @@ export default function Home() {
       </div>
 
       {/* Footer sederhana */}
-      <footer className="py-20 text-center border-t border-gray-100 text-gray-400 text-sm">
-        © 2026 STINQ - All Rigths Reserved
-      </footer>
+      <Footer />
     </main>
   );
 }

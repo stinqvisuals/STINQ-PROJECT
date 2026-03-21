@@ -61,7 +61,7 @@ export default function ManageProducts() {
     return (
         <div>
             <Toaster />
-            <h1 className="text-2xl font-bold mb-6">Manage Products</h1>
+            <h1 className="text-2xl font-black mb-6">Manage Products</h1>
 
             {/* FORM TAMBAH PRODUK */}
             <div className="bg-white p-6 rounded-xl shadow-sm mb-10 border border-gray-200">

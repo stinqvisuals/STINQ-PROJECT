@@ -65,7 +65,7 @@ const CategoryPage = () => {
                     <h1 className="text-3xl font-black tracking-tighter">
                         {slug === 'featured'
                             ? 'New & Featured'
-                            : `${decodedSlug.replace(/\./g, '')} collection`}
+                            : `${decodedSlug.replace(/\./g, '')}`}
                     </h1>
                     <p className="text-gray-500 mt-1 text-sm font-medium">
                         Showing {products.length} Results

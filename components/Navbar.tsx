@@ -5,12 +5,13 @@ import { ShoppingBag, Heart, Search, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/lib/store';
-import { useWishlist } from '@/lib/wish-list-store'; // Pastikan path benar
+import { useRouter } from 'next/navigation';
+import { useWishlist } from '@/lib/wish-list-store';
 
-// --- 1. VARIABEL ANIMASI (Slide dari Atas) ---
+// --- 1. VARIABEL ANIMASI ---
 const menuVariants: Variants = {
     closed: {
-        y: "-100%", // Start dari atas layar
+        y: "-100%",
         transition: { duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }
     },
     open: {
@@ -32,13 +33,26 @@ const linkVariants: Variants = {
 };
 
 const Navbar = () => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const items = useCart((state) => state.items);
     const favorites = useWishlist((state) => state.favorites);
     const [mounted, setMounted] = useState(false);
+
+    // --- FUNGSI SEARCH (DIPERBAIKI) ---
+    const handleSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            // Mengarahkan ke halaman search dengan query
+            router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+            setIsSearchOpen(false); // Tutup bar setelah mencari
+            setSearchQuery("");      // Reset input
+        }
+    };
 
     useEffect(() => {
         setMounted(true);
@@ -61,8 +75,8 @@ const Navbar = () => {
                     <Image src="/Untitled-3.svg" alt="Logo" width={60} height={30} className="object-contain" priority />
                 </Link>
 
-                {/* DESKTOP NAVIGATION (Center) */}
-                <div className="hidden md:flex items-center gap-8 font-bold text-sm text-black absolute left-1/2 -translate-x-1/2">
+                {/* DESKTOP NAVIGATION */}
+                <div className="hidden md:flex items-center gap-8 font-bold text-sm text-black absolute left-1/2 -translate-x-1/2 tracking-tighter">
                     <Link href="/category/new" className="hover:opacity-50 transition">New Arrival</Link>
                     <Link href="/category/men" className="hover:opacity-50 transition">Men</Link>
                     <Link href="/category/women" className="hover:opacity-50 transition">Women</Link>
@@ -70,10 +84,8 @@ const Navbar = () => {
                     <Link href="/category/sale" className="hover:opacity-50 transition">Sale</Link>
                 </div>
 
-                {/* RIGHT ICONS (Visible on Mobile & Desktop) */}
+                {/* RIGHT ICONS */}
                 <div className="flex items-center gap-1 md:gap-4 z-[160]">
-
-                    {/* SEARCH ICON */}
                     <button
                         onClick={() => {
                             setIsOpen(false);
@@ -84,15 +96,13 @@ const Navbar = () => {
                         <Search className="h-6 w-6 text-black" />
                     </button>
 
-                    {/* HEART (WISHLIST) ICON */}
                     <Link href="/favorites" className="p-2 hover:bg-gray-100 rounded-full transition relative">
-                        <Heart className={`h-6 w-6 ${favCount > 0 ? "fill-black text-black" : "text-black"}`} />
+                        <Heart className={`h-6 w-6 ${favCount > 0 ? "fill-transparent text-black" : "text-black"}`} />
                         {favCount > 0 && (
-                            <span className="absolute top-2 right-2 bg-black w-2 h-2 rounded-full border border-white"></span>
+                            <span className="absolute top-2 right-2 bg-red-600 w-2 h-2 rounded-full border border-white"></span>
                         )}
                     </Link>
 
-                    {/* CART ICON */}
                     <Link href="/cart" className="relative p-2 hover:bg-gray-100 rounded-full transition">
                         <ShoppingBag className="h-6 w-6 text-black" />
                         {cartCount > 0 && (
@@ -102,7 +112,6 @@ const Navbar = () => {
                         )}
                     </Link>
 
-                    {/* HAMBURGER BUTTON */}
                     <button
                         className="md:hidden p-2 text-black transition-transform active:scale-90"
                         onClick={() => {
@@ -115,10 +124,10 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* --- MOBILE MENU OVERLAY --- */}
+            {/* --- MOBILE MENU & SEARCH OVERLAY --- */}
             <AnimatePresence mode="wait">
 
-                {/* ================= SEARCH ================= */}
+                {/* ================= SEARCH OVERLAY (DIPERBAIKI) ================= */}
                 {isSearchOpen && (
                     <>
                         <motion.div
@@ -138,21 +147,25 @@ const Navbar = () => {
                             exit="closed"
                             className="fixed top-0 left-0 w-full bg-white z-[150] shadow-2xl p-6 md:p-10"
                         >
-                            <div className="flex items-center gap-4 text-black py-8">
+                            <form onSubmit={handleSearchSubmit} className="flex items-center gap-4 text-black py-8 max-w-[1440px] mx-auto">
+                                <Search size={28} className="text-gray-400" />
                                 <input
                                     type="text"
                                     placeholder="Search products..."
                                     autoFocus
-                                    className="w-full border-b border-black outline-none text-lg py-2"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full border-b border-black outline-none text-2xl md:text-1xl font-medium tracking-tighter py-2 placeholder:text-gray-600"
                                 />
 
                                 <button
+                                    type="button"
                                     onClick={() => setIsSearchOpen(false)}
                                     className="p-2 cursor-pointer hover:bg-gray-100 rounded-full transition"
                                 >
-                                    <X size={28} />
+                                    <X size={32} />
                                 </button>
-                            </div>
+                            </form>
                         </motion.div>
                     </>
                 )}
@@ -187,9 +200,9 @@ const Navbar = () => {
                                         <Link
                                             href={item === 'Sale'
                                                 ? '/category/sale'
-                                                : `/category/${item.toLowerCase()}`}
+                                                : `/category/${item.toLowerCase().replace(' arrival', '')}`}
                                             onClick={() => setIsOpen(false)}
-                                            className="text-2xl font-black tracking-tighter block text-black"
+                                            className={`text-2xl font-bold tracking-tighter block ${item === 'Sale' ? 'text-black' : 'text-black'}`}
                                         >
                                             {item}
                                         </Link>
@@ -199,9 +212,8 @@ const Navbar = () => {
                         </motion.div>
                     </>
                 )}
-
             </AnimatePresence>
-        </nav >
+        </nav>
     );
 };
 
