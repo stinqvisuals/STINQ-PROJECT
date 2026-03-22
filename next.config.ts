@@ -4,12 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.supabase.co', // Mengizinkan semua domain dari supabase
-      },
-      // Jika kamu ambil gambar dari Unsplash atau tempat lain, tambahkan di sini:
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'oeqsfqfypwmqzhexkozi.supabase.co', // Ganti dengan hostname Supabase kamu
+        port: '',
+        pathname: '/storage/v1/object/public/**',
       },
     ],
   },

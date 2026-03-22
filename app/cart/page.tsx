@@ -29,7 +29,7 @@ const CartPage = () => {
                     <div className="lg:col-span-2 space-y-8">
                         {items.length === 0 ? (
                             <div className="py-10 border-t border-b border-gray-100">
-                                <p className="text-gray-400 mb-6 font-bold tracking-widest text-sm">Your cart is currently empty.</p>
+                                <p className="text-gray-400 mb-6">Your cart is currently empty.</p>
                                 <Link href="/" className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase hover:opacity-75 transition text-sm">
                                     Start Shopping Now
                                 </Link>
