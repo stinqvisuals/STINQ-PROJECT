@@ -37,7 +37,7 @@ const CheckoutPage = () => {
 
         try {
             // 1. Simpan pesanan ke Supabase
-            const { data, error } = await supabase
+            const { error } = await supabase
                 .from('orders')
                 .insert([{
                     full_name: formData.full_name,
@@ -46,9 +46,7 @@ const CheckoutPage = () => {
                     total_amount: getTotalPrice(),
                     items: items,
                     status: 'pending'
-                }])
-                .select()
-                .single();
+                }]);
 
             if (error) throw error;
 
@@ -57,7 +55,7 @@ const CheckoutPage = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    orderId: `ORDER-${data.id}-${Date.now()}`,
+                    orderId: `ORDER-${Date.now()}`,
                     totalAmount: getTotalPrice(),
                     customerDetails: formData,
                     items: items
@@ -173,7 +171,6 @@ const CheckoutPage = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>

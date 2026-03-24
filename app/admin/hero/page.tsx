@@ -161,11 +161,11 @@ export default function ManageHero() {
 
                     {/* UPLOAD SECTION */}
                     <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Banner Image</label>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2"></label>
                         <div className="relative group">
                             {!preview ? (
-                                <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-100 rounded-3xl cursor-pointer hover:bg-gray-50 hover:border-black transition-all">
-                                    <ImageIcon className="w-10 h-10 text-gray-200 group-hover:text-black mb-3 transition" />
+                                <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-500 rounded-3xl cursor-pointer hover:bg-gray-50 hover:border-black transition-all">
+                                    <ImageIcon className="w-10 h-10 text-gray-500 group-hover:text-black mb-3" />
                                     <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-black">Click to Upload Banner</p>
                                     <input type="file" className="hidden" onChange={handleFileChange} accept="image/*" />
                                 </label>
@@ -208,7 +208,7 @@ export default function ManageHero() {
                                 alt="hero"
                                 className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
                             />
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-500" />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-200" />
                         </div>
                         <div className="p-6">
                             <h3 className="font-black uppercase tracking-tighter text-lg leading-none">

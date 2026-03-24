@@ -98,7 +98,7 @@ const CartPage = () => {
                                             <button
                                                 // UPDATE: Kirim parameter SIZE
                                                 onClick={() => removeItem(item.id, item.size)}
-                                                className="text-gray-300 hover:text-red-600 transition p-2"
+                                                className="text-gray-600 hover:text-red-600 transition p-2"
                                             >
                                                 <Trash2 className="h-5 w-5" />
                                             </button>

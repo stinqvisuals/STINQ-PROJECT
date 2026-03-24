@@ -17,7 +17,7 @@ const FavoritesPage = () => {
     return (
         <main className="min-h-screen bg-white">
             <div className="max-w-[1440px] mx-auto px-4 md:px-12 pt-32 pb-40 text-black">
-                <h1 className="text-2xl font-bold mb-8 tracking-tighter">
+                <h1 className="text-3xl font-black tracking-tighter mb-10">
                     Favorites ({favorites.length})
                 </h1>
 
