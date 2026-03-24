@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Twitter, Facebook, Youtube, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
@@ -43,11 +43,6 @@ const Footer = () => {
                         <p className="text-[11px] font-bold text-gray-400 uppercase leading-loose tracking-widest">
                             Defined by quality.<br />Driven by visuals.<br />Made for the bold.
                         </p>
-                        <div className="flex gap-4 pt-4">
-                            <Instagram size={20} className="cursor-pointer hover:opacity-50 transition" />
-                            <Twitter size={20} className="cursor-pointer hover:opacity-50 transition" />
-                            <Facebook size={20} className="cursor-pointer hover:opacity-50 transition" />
-                        </div>
                     </div>
 
                     {/* KOLOM 2: SHOP */}

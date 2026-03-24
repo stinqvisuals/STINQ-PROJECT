@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Mail, Instagram } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import Footer from '@/components/Footer';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                             </div>
                         </div>
                         <div className="flex items-center gap-4 group">
-                            <div className="p-4 bg-black text-white rounded-full transition group-hover:scale-110"><Instagram size={24} /></div>
+                            <div className="p-4 bg-black text-white rounded-full transition group-hover:scale-110"></div>
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Official Instagram</p>
                                 <p className="font-bold">@stinq.visuals</p>
