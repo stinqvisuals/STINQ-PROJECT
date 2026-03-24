@@ -7,6 +7,8 @@ import { Heart } from 'lucide-react';
 import Footer from '@/components/Footer';
 import toast, { Toaster } from 'react-hot-toast';
 
+export const dynamic = 'force-dynamic';
+
 const FavoritesPage = () => {
     const { favorites, toggleFavorite } = useWishlist();
     const [mounted, setMounted] = useState(false);

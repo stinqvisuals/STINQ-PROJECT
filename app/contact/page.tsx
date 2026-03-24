@@ -4,6 +4,8 @@ import { Mail } from 'lucide-react';
 import Footer from '@/components/Footer';
 import toast, { Toaster } from 'react-hot-toast';
 
+export const dynamic = 'force-dynamic';
+
 export default function ContactPage() {
     // 1. Tambahkan state untuk menampung input user
     const [formData, setFormData] = useState({

@@ -10,6 +10,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import Footer from '@/components/Footer';
 
+export const dynamic = 'force-dynamic';
+
 interface Product {
     id: number;
     name: string;

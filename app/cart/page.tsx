@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 const CartPage = () => {
     // Ambil fungsi yang sudah kita update di store.ts
     const { items, removeItem, updateQuantity, getTotalPrice } = useCart();

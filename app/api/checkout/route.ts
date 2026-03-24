@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 const midtransClient = require('midtrans-client');
 
+export const dynamic = 'force-dynamic';
+
 // Inisialisasi Midtrans Snap
 let snap = new midtransClient.Snap({
     isProduction: false, // Set ke true jika sudah mau jualan beneran

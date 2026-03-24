@@ -5,6 +5,8 @@ import { supabase } from '@/lib/supabase';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 declare global {
     interface Window {
         snap: any;

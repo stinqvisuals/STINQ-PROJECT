@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { useWishlist } from '@/lib/wish-list-store';
 import Footer from '@/components/Footer';
 
+export const dynamic = 'force-dynamic';
+
 interface Product {
     id: number;
     name: string;
