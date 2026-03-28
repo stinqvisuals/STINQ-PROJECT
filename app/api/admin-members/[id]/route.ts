@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js"; // Import langsung dari library
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function DELETE(req: Request) {
+    // 🔥 INISIALISASI DI DALAM FUNGSI (Solusi Final Error Vercel)
+    // Dengan cara ini, library tidak akan protes "URL is required" saat proses build
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://oeqsfqfypwmqzhexkozi.supabase.co';
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy-key-untuk-build';
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
     try {
         // 🔥 AMBIL ID DARI URL LANGSUNG
         const url = new URL(req.url);
@@ -25,6 +27,7 @@ export async function DELETE(req: Request) {
             );
         }
 
+        // Jalankan perintah hapus
         const { error } = await supabase
             .from("members")
             .delete()
