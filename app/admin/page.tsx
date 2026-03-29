@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingBag, Users, DollarSign, Package } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminDashboard() {
     const [stats, setStats] = useState({
         totalOrders: 0,
